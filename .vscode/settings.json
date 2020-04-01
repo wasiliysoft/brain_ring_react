@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "node_modules/": true,
+        ".firebase/": true,
+        ".firebaserc": true,
+        "package-lock.json": true,
+        // "build": true,
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true
+    },
+    "editor.tokenColorCustomizations": {
+        "semanticHighlighting": true
+    },
+}
