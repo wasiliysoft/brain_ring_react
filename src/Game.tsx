@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, CircularProgress, Button, Typography, Box } from '@material-ui/core';
 import ScoreBox from './Score';
 import Player, { PlayerStatus } from './Player';
+import Prefs from './PrefHelper';
 
 const useStyles = makeStyles((theme) => ({
     row: {
@@ -54,14 +55,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 enum Mode { "game", "pause" }
 
-const maxTime = 10;
+
 
 const Game: React.FC = () => {
-    const classes = useStyles();
+    var pref = new Prefs();
+
+    const maxTime = pref.getTimer();
     const [timer, setTimer] = React.useState<number>(maxTime);
+
     const [mode, setMode] = React.useState<Mode>(Mode.pause);
     const [lPlayer, setLPlayer] = React.useState<Player>(new Player("Красный стол"));
     const [rPlayer, setRPlayer] = React.useState<Player>(new Player("Синий стол"));
+    const classes = useStyles();
+
 
     React.useEffect(() => {
         function progress() {
@@ -104,7 +110,7 @@ const Game: React.FC = () => {
         }
         let player: Player;
         switch (ev.keyCode) {
-            case 81: //q Левый стол
+            case pref.getLeftCode(): //q Левый стол
                 player = Object.create(lPlayer) as Player;
                 if (mode !== Mode.game && player.status !== PlayerStatus.active) {
                     player.status = PlayerStatus.falstart;
@@ -113,7 +119,7 @@ const Game: React.FC = () => {
                 }
                 setLPlayer(player);
                 break;
-            case 87: //w Правый стол
+            case pref.getRightCode(): //w Правый стол
                 player = Object.create(rPlayer) as Player;
                 if (mode !== Mode.game && player.status !== PlayerStatus.active) {
                     player.status = PlayerStatus.falstart;
