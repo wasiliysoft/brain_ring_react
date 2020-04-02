@@ -64,8 +64,8 @@ const Game: React.FC = () => {
     const [timer, setTimer] = React.useState<number>(maxTime);
 
     const [mode, setMode] = React.useState<Mode>(Mode.pause);
-    const [lPlayer, setLPlayer] = React.useState<Player>(new Player("Красный стол"));
-    const [rPlayer, setRPlayer] = React.useState<Player>(new Player("Синий стол"));
+    const [lPlayer, setLPlayer] = React.useState<Player>(new Player("Команда 1"));
+    const [rPlayer, setRPlayer] = React.useState<Player>(new Player("Команда 2"));
     const classes = useStyles();
 
 

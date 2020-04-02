@@ -1,15 +1,15 @@
 import React from 'react';
-import { Box, Typography, makeStyles, Button } from '@material-ui/core';
+import { Box, Typography, makeStyles, Button, TextField } from '@material-ui/core';
 import { orange, red, grey } from '@material-ui/core/colors';
 import Player, { PlayerStatus } from './Player';
 
 const defScoreColor = grey[400];
 const activeScoreColor = orange[600];
-const falstartScoreColor = red[900];
+const falstartScoreColor = red[600];
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        borderRadius:theme.spacing(2),
+        borderRadius: theme.spacing(2),
         display: "flex",
         alignItems: 'center',
         //justifyContent: 'space-around',
@@ -51,7 +51,12 @@ const ScoreBox: React.FC<{ player: Player }> = (props) => {
         <Button variant={"outlined"}
             color="primary" onClick={() => setScore((prev) => prev - 1)}  >-</Button>
         <br />
-        <Typography variant="h6" >{props.player.label}</Typography>
-    </Box>
+        <TextField
+            margin="dense"
+            variant="standard"
+            inputProps={{ min: 0, style: { textAlign: 'center', fontSize: 25 } }}
+            placeholder={props.player.label}
+        />
+    </Box >
 }
 export default ScoreBox;
