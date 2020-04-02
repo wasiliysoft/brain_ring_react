@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, TextField, Paper, makeStyles, Box, InputAdornment, OutlinedInput } from '@material-ui/core';
+import { Button, Container, TextField, Paper, makeStyles, Box, InputAdornment } from '@material-ui/core';
 import Prefs from './PrefHelper';
 import { grey } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
