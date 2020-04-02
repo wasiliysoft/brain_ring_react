@@ -23,14 +23,14 @@ const Settings: React.FC = () => {
         </TextField>
         <TextField
             fullWidth
-            label="Левая кнопка (keyCode)"
+            label="Кнопка 1 (keyCode)"
             margin="dense"
             variant="outlined"
             value={LKeyCode}
             onKeyDown={(event) => setLKeyCode(event.keyCode)}
         >
         </TextField>
-        <TextField label="Правая кнопка (keyCode)"
+        <TextField label="Кнопка 2 (keyCode)"
             fullWidth
             margin="dense"
             variant="outlined"

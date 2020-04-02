@@ -4,6 +4,12 @@ import ScoreBox from './Score';
 import Player, { PlayerStatus } from './Player';
 import Prefs from './PrefHelper';
 
+var audioStart = new Audio("audio/start.wav");
+var audioButton = new Audio("audio/button.wav");
+var audioFalseStart = new Audio("audio/falsestart.wav");
+var audioTimeOut = new Audio("audio/timeout.wav");
+
+
 const useStyles = makeStyles((theme) => ({
     row: {
         display: "flex",
@@ -72,7 +78,16 @@ const Game: React.FC = () => {
     React.useEffect(() => {
         function progress() {
             if (mode === Mode.game) {
-                setTimer((prevTimer) => prevTimer <= 0 ? 0 : prevTimer - 1);
+                setTimer((prevTimer) => {
+                    if (prevTimer <= 1) {
+                        audioTimeOut.play();
+                        clearInterval(timer);
+                        return 0;
+                    } else {
+                        return prevTimer - 1
+                    }
+                }
+                );
             }
         }
 
@@ -85,6 +100,7 @@ const Game: React.FC = () => {
     const startGame = () => {
         readyPlayer();
         setMode(Mode.game);
+        audioStart.play();
     }
 
     const restartGame = () => {
@@ -114,8 +130,10 @@ const Game: React.FC = () => {
                 player = Object.create(lPlayer) as Player;
                 if (mode !== Mode.game && player.status !== PlayerStatus.active) {
                     player.status = PlayerStatus.falstart;
+                    audioFalseStart.play();
                 } else {
                     player.status = PlayerStatus.active;
+                    audioButton.play();
                 }
                 setLPlayer(player);
                 break;
@@ -123,8 +141,10 @@ const Game: React.FC = () => {
                 player = Object.create(rPlayer) as Player;
                 if (mode !== Mode.game && player.status !== PlayerStatus.active) {
                     player.status = PlayerStatus.falstart;
+                    audioFalseStart.play();
                 } else {
                     player.status = PlayerStatus.active;
+                    audioButton.play();
                 }
                 setRPlayer(player);
                 break;
