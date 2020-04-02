@@ -3,7 +3,7 @@ import { Box, Typography, makeStyles, Button, TextField } from '@material-ui/cor
 import { orange, red, grey } from '@material-ui/core/colors';
 import Player, { PlayerStatus } from './Player';
 
-const defScoreColor = grey[400];
+const defScoreColor = grey[300];
 const activeScoreColor = orange[600];
 const falstartScoreColor = red[600];
 
