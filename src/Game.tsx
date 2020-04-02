@@ -61,12 +61,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 enum Mode { "game", "pause" }
 
-
+const div = (x: number, y: number) => {
+    var c = ((x - x % y) / y);
+    //console.log(c, x / y);
+    if (c < (x / y)) {
+        return c + 1;
+    } else {
+        return c;
+    }
+}
 
 const Game: React.FC = () => {
     var pref = new Prefs();
 
-    const maxTime = pref.getTimer();
+    const maxTime = pref.getTimer() * 10;
     const [timer, setTimer] = React.useState<number>(maxTime);
 
     const [mode, setMode] = React.useState<Mode>(Mode.pause);
@@ -91,7 +99,7 @@ const Game: React.FC = () => {
             }
         }
 
-        const timer = setInterval(progress, 1000);
+        const timer = setInterval(progress, 100);
         return () => {
             clearInterval(timer);
         };
@@ -165,12 +173,16 @@ const Game: React.FC = () => {
         <Box className={classes.row} width="100vw">
             <ScoreBox player={lPlayer} />
             <div className={classes.progress}>
-                <CircularProgress size="500px" variant="static" value={Math.fround((maxTime - timer) * (100 / maxTime))} />
+                <CircularProgress
+                    size="500px"
+                    thickness={4}
+                    variant="static"
+                    value={Math.fround((maxTime - timer) * (100 / maxTime))} />
                 <div className={classes.inProgress}>
                     <Typography
 
                         color={mode === Mode.game ? "secondary" : "primary"}
-                        variant="h1" >{timer}</Typography>
+                        variant="h1" > {div(timer, 10)}</Typography>
                     <div>
                         <Button className={classes.commandBtn}
                             disabled={mode === Mode.game}
