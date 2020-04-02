@@ -23,6 +23,7 @@ const Settings: React.FC = () => {
     const [ResetKeyCode, setResetKeyCode] = React.useState<number>(pref.getResetCode());
 
     const [timer, setTimer] = React.useState<number>(pref.getTimer());
+    const [timer2, setTimer2] = React.useState<number>(pref.getTimer2());
     const classes = useStyles();
 
     return <Container maxWidth="md">
@@ -34,6 +35,15 @@ const Settings: React.FC = () => {
                 type="number"
                 value={timer}
                 onChange={(event) => setTimer(Number.parseInt(event.target.value))}
+            >
+            </TextField>
+            <TextField label="Время после ошибки (сек)"
+                fullWidth
+                margin="dense"
+                variant="outlined"
+                type="number"
+                value={timer2}
+                onChange={(event) => setTimer2(Number.parseInt(event.target.value))}
             >
             </TextField>
             <br />
@@ -90,6 +100,7 @@ const Settings: React.FC = () => {
                             pref.setStartCode(StartKeyCode);
                             pref.setResetCode(ResetKeyCode);
                             pref.setTimer(timer);
+                            pref.setTimer2(timer2);
                             window.location.reload();
 
                         }}>Сохранить</Button>

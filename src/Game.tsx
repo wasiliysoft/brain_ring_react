@@ -166,6 +166,9 @@ const Game: React.FC = () => {
             default:
                 return;
         }
+        if (timer > (pref.getTimer2() * 10)) {
+            setTimer(pref.getTimer2() * 10);
+        }
         setMode(Mode.pause);
     }
 

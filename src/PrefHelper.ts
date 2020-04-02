@@ -60,5 +60,16 @@ class Prefs {
         return 60;
     }
 
+    setTimer2(timer: number) {
+        localStorage.setItem("timer2", timer.toString());
+    }
+
+    getTimer2(): number {
+        let value = localStorage.getItem("timer2");
+        if (value !== null) {
+            return Number.parseInt(value);
+        }
+        return 20;
+    }
 }
 export default Prefs;
