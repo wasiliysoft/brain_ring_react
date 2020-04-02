@@ -7,10 +7,12 @@ class Prefs {
         localStorage.setItem("startcode", code.toString());
     }
     getStartCode(): number {
-        let value = localStorage.getItem("startcode");
-        if (value !== null) {
-            return Number.parseInt(value);
-        }
+        try {
+            let value = localStorage.getItem("startcode");
+            if (value !== null) {
+                return Number.parseInt(value);
+            }
+        } catch (e) { }
         return 107;
     }
 
@@ -18,10 +20,12 @@ class Prefs {
         localStorage.setItem("resetcode", code.toString());
     }
     getResetCode(): number {
-        let value = localStorage.getItem("resetcode");
-        if (value !== null) {
-            return Number.parseInt(value);
-        }
+        try {
+            let value = localStorage.getItem("resetcode");
+            if (value !== null) {
+                return Number.parseInt(value);
+            }
+        } catch (e) { }
         return 8;
     }
 
@@ -29,10 +33,12 @@ class Prefs {
         localStorage.setItem("lcode", code.toString());
     }
     getLeftCode(): number {
-        let value = localStorage.getItem("lcode");
-        if (value !== null) {
-            return Number.parseInt(value);
-        }
+        try {
+            let value = localStorage.getItem("lcode");
+            if (value !== null) {
+                return Number.parseInt(value);
+            }
+        } catch (e) { }
         return 37;
     }
 
@@ -41,10 +47,12 @@ class Prefs {
     }
 
     getRightCode(): number {
-        let value = localStorage.getItem("rcode");
-        if (value !== null) {
-            return Number.parseInt(value);
-        }
+        try {
+            let value = localStorage.getItem("rcode");
+            if (value !== null) {
+                return Number.parseInt(value);
+            }
+        } catch (e) { }
         return 39;
     }
 
@@ -53,10 +61,12 @@ class Prefs {
     }
 
     getTimer(): number {
-        let value = localStorage.getItem("timer");
-        if (value !== null) {
-            return Number.parseInt(value);
-        }
+        try {
+            let value = localStorage.getItem("timer");
+            if (value !== null) {
+                return Number.parseInt(value);
+            }
+        } catch (e) { }
         return 60;
     }
 
@@ -65,10 +75,12 @@ class Prefs {
     }
 
     getTimer2(): number {
-        let value = localStorage.getItem("timer2");
-        if (value !== null) {
-            return Number.parseInt(value);
-        }
+        try {
+            let value = localStorage.getItem("timer2");
+            if (value !== null) {
+                return Number.parseInt(value);
+            }
+        } catch (e) { }
         return 20;
     }
 }
