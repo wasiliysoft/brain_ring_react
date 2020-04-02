@@ -78,7 +78,7 @@ const Settings: React.FC = () => {
                         onClick={() => {
                             if (window.confirm("Восстановить значения по умолчанию?")) {
                                 pref.restoreDefault();
-                                window.location.href = "./";
+                                window.location.reload();
                             }
                         }}>По умолчанию</Button>
                 </Box>
@@ -89,8 +89,9 @@ const Settings: React.FC = () => {
                             pref.setRightCode(RKeyCode);
                             pref.setStartCode(StartKeyCode);
                             pref.setResetCode(ResetKeyCode);
-
                             pref.setTimer(timer);
+                            window.location.reload();
+
                         }}>Сохранить</Button>
                 </Box>
             </div>

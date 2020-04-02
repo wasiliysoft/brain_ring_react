@@ -1,7 +1,7 @@
 import React from 'react';
 import Settings from './Settings';
 import Game from './Game';
-import { AppBar, Typography, makeStyles } from '@material-ui/core';
+import { AppBar, Typography, makeStyles, Button, Toolbar } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
@@ -39,23 +39,69 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     //backgroundColor: 'gray'
   },
+  space: {
+    flexGrow: 1
+  },
+  newGameBtn: {
+    marginLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(8),
+    paddingRight: theme.spacing(8),
+  },
+  logo: {
+    height: theme.spacing(4),
+    marginRight: theme.spacing(4),
+  },
   toolbar: theme.mixins.toolbar
 }));
 
 const App: React.FC = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState<number>(0);
+  const [curTime, setCurTime] = React.useState<string>("");
+
+
+  React.useEffect(() => {
+    function updateTime() {
+      var d = new Date();
+      var h = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
+      var m = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
+      var n = h + ":" + m;
+      setCurTime(n);
+    }
+
+    const timer = setInterval(updateTime, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  });
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
+
   return (
     <div className={classes.root}>
       <AppBar position="absolute" variant="elevation">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Игра" {...a11yProps(0)} />
-          <Tab label="Настройки" {...a11yProps(1)} />
-          <Tab label="О программе" {...a11yProps(2)} />
-        </Tabs>
+        <Toolbar variant="dense">
+          <img src="favicon.png" alt="logo" className={classes.logo} />
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tab label="Игра" {...a11yProps(0)} />
+            <Tab label="Настройки" {...a11yProps(1)} />
+            <Tab label="О программе" {...a11yProps(2)} />
+          </Tabs>
+          <div className={classes.space} />
+          <Typography variant="h4">{curTime}</Typography>
+
+          <Button
+            className={classes.newGameBtn}
+            variant="outlined"
+            color="inherit"
+            onClick={() => {
+              window.location.reload();
+            }}
+          >Новая игра</Button>
+        </Toolbar>
+
+
       </AppBar>
       <div className={classes.toolbar} />
 
