@@ -134,6 +134,13 @@ const Game: React.FC = () => {
         }
         let player: Player;
         switch (ev.keyCode) {
+            case pref.getStartCode():
+                startGame();
+                return;
+            case pref.getResetCode():
+                restartGame();
+                return;
+
             case pref.getLeftCode(): //q Левый стол
                 player = Object.create(lPlayer) as Player;
                 if (mode !== Mode.game && player.status !== PlayerStatus.active) {

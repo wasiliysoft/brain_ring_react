@@ -1,5 +1,29 @@
 class Prefs {
 
+    restoreDefault() {
+        localStorage.clear();
+    }
+    setStartCode(code: number) {
+        localStorage.setItem("startcode", code.toString());
+    }
+    getStartCode(): number {
+        let value = localStorage.getItem("startcode");
+        if (value !== null) {
+            return Number.parseInt(value);
+        }
+        return 107;
+    }
+
+    setResetCode(code: number) {
+        localStorage.setItem("resetcode", code.toString());
+    }
+    getResetCode(): number {
+        let value = localStorage.getItem("resetcode");
+        if (value !== null) {
+            return Number.parseInt(value);
+        }
+        return 8;
+    }
 
     setLeftCode(code: number) {
         localStorage.setItem("lcode", code.toString());
@@ -9,7 +33,7 @@ class Prefs {
         if (value !== null) {
             return Number.parseInt(value);
         }
-        return 81;
+        return 37;
     }
 
     setRightCode(code: number) {
@@ -21,7 +45,7 @@ class Prefs {
         if (value !== null) {
             return Number.parseInt(value);
         }
-        return 87;
+        return 39;
     }
 
     setTimer(timer: number) {
