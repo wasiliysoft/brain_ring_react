@@ -102,7 +102,7 @@ const Settings: React.FC = () => {
                 fullWidth
                 margin="dense"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 'Backspace'</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 'Delete'</InputAdornment>,
                 }}
                 variant="outlined"
                 value={ResetKeyCode}

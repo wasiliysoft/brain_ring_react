@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, CircularProgress, Button, Typography, Box } from '@material-ui/core';
+import { makeStyles, CircularProgress, Button, Typography } from '@material-ui/core';
 import ScoreBox from './Score';
 import Player, { PlayerStatus } from './Player';
 import Prefs from './PrefHelper';

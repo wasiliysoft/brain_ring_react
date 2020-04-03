@@ -1,87 +1,105 @@
+export class defaultVal {
+    static readonly LCode = 37;
+    static readonly RCode = 39;
+    static readonly StartCode = 107;
+    static readonly ResetCode = 46;
+    static readonly Timer = 60;
+    static readonly Timer2 = 20;
+}
+
 class Prefs {
 
-    restoreDefault() {
-        localStorage.clear();
+
+    // возвращает куки с указанным name,
+    // или undefined, если ничего не найдено
+    private getCookie(name: string) {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
     }
+
+    private setCookie(name: string, value: string) {
+        document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    }
+
+    restoreDefault() {
+        this.setLeftCode(defaultVal.LCode);
+        this.setRightCode(defaultVal.RCode);
+        this.setStartCode(defaultVal.StartCode);
+        this.setResetCode(defaultVal.ResetCode);
+        this.setTimer(defaultVal.Timer);
+        this.setTimer2(defaultVal.Timer2);
+    }
+
     setStartCode(code: number) {
-        localStorage.setItem("startcode", code.toString());
+        this.setCookie("startcode", code.toString());
     }
     getStartCode(): number {
-        try {
-            let value = localStorage.getItem("startcode");
-            if (value !== null) {
-                return Number.parseInt(value);
-            }
-        } catch (e) { }
-        return 107;
+        let value = this.getCookie("startcode");
+        if (value !== undefined) {
+            return Number.parseInt(value);
+        }
+        return defaultVal.StartCode;
     }
 
     setResetCode(code: number) {
-        localStorage.setItem("resetcode", code.toString());
+        this.setCookie("resetcode", code.toString());
     }
+
     getResetCode(): number {
-        try {
-            let value = localStorage.getItem("resetcode");
-            if (value !== null) {
-                return Number.parseInt(value);
-            }
-        } catch (e) { }
-        return 8;
+        let value = this.getCookie("resetcode");
+        if (value !== undefined) {
+            return Number.parseInt(value);
+        }
+        return defaultVal.ResetCode;
     }
 
     setLeftCode(code: number) {
-        localStorage.setItem("lcode", code.toString());
+        this.setCookie("lcode", code.toString());
     }
     getLeftCode(): number {
-        try {
-            let value = localStorage.getItem("lcode");
-            if (value !== null) {
-                return Number.parseInt(value);
-            }
-        } catch (e) { }
-        return 37;
+        let value = this.getCookie("lcode");
+        if (value !== undefined) {
+            return Number.parseInt(value);
+        }
+        return defaultVal.LCode;
     }
 
     setRightCode(code: number) {
-        localStorage.setItem("rcode", code.toString());
+        this.setCookie("rcode", code.toString());
     }
 
     getRightCode(): number {
-        try {
-            let value = localStorage.getItem("rcode");
-            if (value !== null) {
-                return Number.parseInt(value);
-            }
-        } catch (e) { }
-        return 39;
+        let value = this.getCookie("rcode");
+        if (value !== undefined) {
+            return Number.parseInt(value);
+        }
+        return defaultVal.RCode;
     }
 
     setTimer(timer: number) {
-        localStorage.setItem("timer", timer.toString());
+        this.setCookie("timer", timer.toString());
     }
 
     getTimer(): number {
-        try {
-            let value = localStorage.getItem("timer");
-            if (value !== null) {
-                return Number.parseInt(value);
-            }
-        } catch (e) { }
-        return 60;
+        let value = this.getCookie("timer");
+        if (value !== undefined) {
+            return Number.parseInt(value);
+        }
+        return defaultVal.Timer;
     }
 
     setTimer2(timer: number) {
-        localStorage.setItem("timer2", timer.toString());
+        this.setCookie("timer2", timer.toString());
     }
 
     getTimer2(): number {
-        try {
-            let value = localStorage.getItem("timer2");
-            if (value !== null) {
-                return Number.parseInt(value);
-            }
-        } catch (e) { }
-        return 20;
+        let value = this.getCookie("timer2");
+        if (value !== undefined) {
+            return Number.parseInt(value);
+        }
+        return defaultVal.Timer2;
     }
 }
 export default Prefs;
