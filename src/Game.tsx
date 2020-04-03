@@ -4,10 +4,10 @@ import ScoreBox from './Score';
 import Player, { PlayerStatus } from './Player';
 import Prefs from './PrefHelper';
 
-var audioStart = new Audio("audio/start.wav");
-var audioButton = new Audio("audio/button.wav");
-var audioFalseStart = new Audio("audio/falsestart.wav");
-var audioTimeOut = new Audio("audio/timeout.wav");
+var audioStart = new Audio("audio/start.mp3");
+var audioButton = new Audio("audio/button.mp3");
+var audioFalseStart = new Audio("audio/falsestart.mp3");
+var audioTimeOut = new Audio("audio/timeout.mp3");
 
 
 const useStyles = makeStyles((theme) => ({
