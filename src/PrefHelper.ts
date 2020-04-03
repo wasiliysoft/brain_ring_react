@@ -12,15 +12,25 @@ class Prefs {
 
     // возвращает куки с указанным name,
     // или undefined, если ничего не найдено
-    private getCookie(name: string) {
-        let matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
+    private getValue(name: string): string | undefined {
+        if (localStorage === undefined) { // IE11 offline mode
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        } else {
+            let val = localStorage.getItem(name);
+            return val ? val : undefined;
+        }
     }
 
-    private setCookie(name: string, value: string) {
-        document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    private setValue(name: string, value: string) {
+        if (localStorage === undefined) { // IE11 offline mode
+            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+        } else {
+            localStorage.setItem(name, value);
+        }
+
     }
 
     restoreDefault() {
@@ -33,10 +43,10 @@ class Prefs {
     }
 
     setStartCode(code: number) {
-        this.setCookie("startcode", code.toString());
+        this.setValue("startcode", code.toString());
     }
     getStartCode(): number {
-        let value = this.getCookie("startcode");
+        let value = this.getValue("startcode");
         if (value !== undefined) {
             return Number.parseInt(value);
         }
@@ -44,11 +54,11 @@ class Prefs {
     }
 
     setResetCode(code: number) {
-        this.setCookie("resetcode", code.toString());
+        this.setValue("resetcode", code.toString());
     }
 
     getResetCode(): number {
-        let value = this.getCookie("resetcode");
+        let value = this.getValue("resetcode");
         if (value !== undefined) {
             return Number.parseInt(value);
         }
@@ -56,10 +66,10 @@ class Prefs {
     }
 
     setLeftCode(code: number) {
-        this.setCookie("lcode", code.toString());
+        this.setValue("lcode", code.toString());
     }
     getLeftCode(): number {
-        let value = this.getCookie("lcode");
+        let value = this.getValue("lcode");
         if (value !== undefined) {
             return Number.parseInt(value);
         }
@@ -67,11 +77,11 @@ class Prefs {
     }
 
     setRightCode(code: number) {
-        this.setCookie("rcode", code.toString());
+        this.setValue("rcode", code.toString());
     }
 
     getRightCode(): number {
-        let value = this.getCookie("rcode");
+        let value = this.getValue("rcode");
         if (value !== undefined) {
             return Number.parseInt(value);
         }
@@ -79,11 +89,11 @@ class Prefs {
     }
 
     setTimer(timer: number) {
-        this.setCookie("timer", timer.toString());
+        this.setValue("timer", timer.toString());
     }
 
     getTimer(): number {
-        let value = this.getCookie("timer");
+        let value = this.getValue("timer");
         if (value !== undefined) {
             return Number.parseInt(value);
         }
@@ -91,11 +101,11 @@ class Prefs {
     }
 
     setTimer2(timer: number) {
-        this.setCookie("timer2", timer.toString());
+        this.setValue("timer2", timer.toString());
     }
 
     getTimer2(): number {
-        let value = this.getCookie("timer2");
+        let value = this.getValue("timer2");
         if (value !== undefined) {
             return Number.parseInt(value);
         }
