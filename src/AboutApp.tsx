@@ -14,7 +14,7 @@ const AboutApp: React.FC = () => {
     return <Container maxWidth="md" >
         <Paper className={classes.root} >
             <Typography variant="h4" color="primary">Брейн-Ринг</Typography>
-            <Typography variant="h6" >версия 1.0.1 от 03.02.2020</Typography>
+            <Typography variant="h6" >версия 1.0.2 от 03.02.2020</Typography>
             <br />
             <Typography variant="h4" color="primary">Разработчик</Typography>
             <Typography variant="h6" >Васильченко Виталий Юрьевич - WasiliySoft © 2020</Typography>
