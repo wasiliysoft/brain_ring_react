@@ -107,7 +107,7 @@ const App: React.FC = () => {
               onClick={() => {
                 window.location.reload();
               }}
-            >Новая игра</Button>
+            >Новая&nbsp;игра</Button>
           </div>
 
         </Toolbar>
