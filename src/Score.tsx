@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, makeStyles, Button, TextField } from '@material-ui/core';
+import { Typography, makeStyles, Button, TextField, Box } from '@material-ui/core';
 import { orange, red, grey } from '@material-ui/core/colors';
 import Player, { PlayerStatus } from './Player';
 
@@ -10,19 +10,20 @@ const falstartScoreColor = red[600];
 const useStyles = makeStyles((theme) => ({
     root: {
         borderRadius: theme.spacing(2),
-        display: "flex",
-        alignItems: 'center',
-        //justifyContent: 'space-around',
-        justifyContent: 'center',
-        flexDirection: 'column',
+        display: "block",
         marginTop: theme.spacing(6),
-        //backgroundColor:"gray",
-        width: "15vw",
-        padding: theme.spacing(3)
+        padding: theme.spacing(3),
+        //backgroundColor: "gray",
+        width: "220px",
     },
     commandBtn: {
         margin: theme.spacing(1)
     },
+    center: {
+        display: "block",
+        //backgroundColor: "green",
+        textAlign: "center",
+    }
 
 }));
 
@@ -44,19 +45,23 @@ const ScoreBox: React.FC<{ player: Player }> = (props) => {
             break;
     }
 
-    return <Box p={1} className={classes.root} bgcolor={bcolor}>
-        <Button variant={"outlined"}
-            color="primary" onClick={() => setScore((prev) => prev + 1)} >+</Button>
-        <Typography variant="h1" >{score}</Typography>
-        <Button variant={"outlined"}
-            color="primary" onClick={() => setScore((prev) => prev - 1)}  >-</Button>
-        <br />
-        <TextField
-            margin="dense"
-            variant="standard"
-            inputProps={{ min: 0, style: { textAlign: 'center', fontSize: 25 } }}
-            placeholder={props.player.label}
-        />
+    return <Box className={classes.root} bgcolor={bcolor} >
+        <div className={classes.center}>
+            <Button variant={"outlined"}
+                color="primary" onClick={() => setScore((prev) => prev + 1)} >+</Button>
+            <Typography variant="h1" >{score}</Typography>
+            <Button variant={"outlined"}
+                color="primary" onClick={() => setScore((prev) => prev - 1)}  >-</Button>
+            <br />
+            <br />
+            <TextField
+                margin="dense"
+                variant="standard"
+                inputProps={{ min: 0, style: { width: '200px', textAlign: 'center', fontSize: 25 } }}
+                placeholder={props.player.label}
+            />
+        </div>
+
     </Box >
 }
 export default ScoreBox;

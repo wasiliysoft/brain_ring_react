@@ -36,11 +36,17 @@ function a11yProps(index: any) {
 }
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    width: '100vw',
+    overflow: "hidden"
     //backgroundColor: 'gray'
   },
-  space: {
-    flexGrow: 1
+  tabs: {
+    display: "block",
+    width: "100%",
+  },
+  right: {
+    display: "block",
+    float: "right",
   },
   newGameBtn: {
     marginLeft: theme.spacing(4),
@@ -83,22 +89,27 @@ const App: React.FC = () => {
       <AppBar position="absolute" variant="elevation">
         <Toolbar variant="dense">
           <img src="favicon.png" alt="logo" className={classes.logo} />
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="Игра" {...a11yProps(0)} />
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example"
+            className={classes.tabs}>
+            <Tab label="Игра"  {...a11yProps(0)} />
             <Tab label="Настройки" {...a11yProps(1)} />
             <Tab label="О программе" {...a11yProps(2)} />
           </Tabs>
-          <div className={classes.space} />
-          <Typography variant="h4">{curTime}</Typography>
 
-          <Button
-            className={classes.newGameBtn}
-            variant="outlined"
-            color="inherit"
-            onClick={() => {
-              window.location.reload();
-            }}
-          >Новая игра</Button>
+          <div className={classes.right}>
+            <Typography variant="h4">{curTime}</Typography>
+          </div>
+          <div className={classes.right}>
+            <Button
+              className={classes.newGameBtn}
+              variant="outlined"
+              color="inherit"
+              onClick={() => {
+                window.location.reload();
+              }}
+            >Новая игра</Button>
+          </div>
+
         </Toolbar>
 
 

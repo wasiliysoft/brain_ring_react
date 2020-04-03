@@ -11,53 +11,38 @@ var audioTimeOut = new Audio("audio/timeout.wav");
 
 
 const useStyles = makeStyles((theme) => ({
-    row: {
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    header: {
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        height: '10vh'
-    },
-    footer: {
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        height: '10vh'
-    },
     root: {
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        //justifyContent: 'center',
-        flexDirection: 'column',
+        padding: "0",
+        margin: "0",
+        //border: "1px solid green",
         height: '90vh',
         width: '100vw',
+        //backgroundColor: "grey",
+        align: "center"
+    },
+    td: {
+        // border: "1px solid red",
     },
     progress: {
-        //padding: theme.spacing(4),
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        //backgroundColor: "gray",
-        position: "relative"
+        display: "block",
+        position: "relative",
+        //    border: "1px solid green",
     },
     inProgress: {
+        display: "block",
         position: "absolute",
-        marginTop: theme.spacing(3),
-        display: "flex",
-        alignItems: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        width: "100%",
+        //border: "1px solid red",
+        top: "180px",
     },
     commandBtn: {
         margin: theme.spacing(1)
     },
-
+    center: {
+        backgroundColor: "red",
+        textAlign: "center",
+        align: "center",
+    }
 }));
 enum Mode { "game", "pause" }
 
@@ -175,43 +160,46 @@ const Game: React.FC = () => {
 
 
 
-    return <Box className={classes.root} p={0}>
+    return <table className={classes.root}>
+        <tr className={classes.td}>
+            <td align="center" className={classes.td}>
+                <ScoreBox player={lPlayer} />
 
-        <Box className={classes.header} >
+            </td>
+            <td align="center" className={classes.td}>
+                <div className={classes.progress}>
+                    <CircularProgress size="500px" thickness={4} variant="static" value={Math.fround((maxTime - timer) * (100 / maxTime))} />
+                    <div className={classes.inProgress}>
+                        <Typography
 
-        </Box>
-        <Box className={classes.row} width="100vw">
-            <ScoreBox player={lPlayer} />
-            <div className={classes.progress}>
-                <CircularProgress
-                    size="500px"
-                    thickness={4}
-                    variant="static"
-                    value={Math.fround((maxTime - timer) * (100 / maxTime))} />
-                <div className={classes.inProgress}>
-                    <Typography
-
-                        color={mode === Mode.game ? "secondary" : "primary"}
-                        variant="h1" > {div(timer, 10)}</Typography>
-                    <div>
-                        <Button className={classes.commandBtn}
-                            disabled={mode === Mode.game}
-                            variant="outlined"
-                            color="primary"
-                            onClick={startGame}>Старт</Button>
-                        <Button className={classes.commandBtn}
-                            disabled={mode === Mode.game}
-                            variant="outlined"
-                            color="secondary"
-                            onClick={restartGame}>Сброс</Button>
+                            color={mode === Mode.game ? "secondary" : "primary"}
+                            variant="h1" > {div(timer, 10)}</Typography>
+                        <div>
+                            <Button className={classes.commandBtn}
+                                disabled={mode === Mode.game}
+                                variant="outlined"
+                                color="primary"
+                                onClick={startGame}>Старт</Button>
+                            <Button className={classes.commandBtn}
+                                disabled={mode === Mode.game}
+                                variant="outlined"
+                                color="secondary"
+                                onClick={restartGame}>Сброс</Button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <ScoreBox player={rPlayer} />
-        </Box >
-        <Box className={classes.footer} >
-        </Box>
-    </Box >
+
+
+            </td>
+            <td align="center" className={classes.td}>
+                <ScoreBox player={rPlayer} />
+
+            </td>
+        </tr>
+
+    </table >
+
+
 
 }
 export default Game;

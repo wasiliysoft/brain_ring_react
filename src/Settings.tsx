@@ -13,6 +13,16 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignContent: "flex-end",
         justifyContent: "center",
+    },
+    helperText: {
+        margin: 0,
+        display: "block",
+        paddingTop: theme.spacing(0),
+        paddingRight: theme.spacing(5),
+        position: "absolute",
+        top: theme.spacing(1),
+        right: "0",
+        float: "right"
     }
 }));
 const Settings: React.FC = () => {
@@ -34,7 +44,7 @@ const Settings: React.FC = () => {
                 variant="outlined"
                 type="number"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">по умолчанию 60 сек</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 60 сек</InputAdornment>,
                 }}
                 value={timer}
                 onChange={(event) => setTimer(Number.parseInt(event.target.value))}
@@ -45,7 +55,7 @@ const Settings: React.FC = () => {
                 margin="dense"
                 variant="outlined"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">по умолчанию 20 сек</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 20 сек</InputAdornment>,
                 }}
                 type="number"
                 value={timer2}
@@ -59,7 +69,7 @@ const Settings: React.FC = () => {
                 label="Кнопка 1 (keyCode)"
                 margin="dense"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">по умолчанию 'Влево'</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 'Влево'</InputAdornment>,
                 }}
                 variant="outlined"
                 value={LKeyCode}
@@ -70,7 +80,7 @@ const Settings: React.FC = () => {
                 fullWidth
                 margin="dense"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">по умолчанию 'Вправо'</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 'Вправо'</InputAdornment>,
                 }}
                 variant="outlined"
                 value={RKeyCode}
@@ -82,7 +92,7 @@ const Settings: React.FC = () => {
                 fullWidth
                 margin="dense"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">по умолчанию 'num +'</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 'num +'</InputAdornment>,
                 }}
                 variant="outlined"
                 value={StartKeyCode}
@@ -92,7 +102,7 @@ const Settings: React.FC = () => {
                 fullWidth
                 margin="dense"
                 InputProps={{
-                    endAdornment: <InputAdornment position="end">по умолчанию 'Backspace'</InputAdornment>,
+                    endAdornment: <InputAdornment position="end" className={classes.helperText}>по умолчанию 'Backspace'</InputAdornment>,
                 }}
                 variant="outlined"
                 value={ResetKeyCode}
